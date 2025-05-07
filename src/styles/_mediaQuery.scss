@@ -1,0 +1,37 @@
+@use "sass:map";
+
+$breakpointValues : (
+    xs-mobile : 320px,
+    mobile : 480px,
+    tablet : 768px,
+    laptop : 1024px,
+    desktop : 1200px,
+    bg-screen : 1201px
+);
+
+// Creating mixin function
+@mixin mobile($key) {
+    // Get key value and assign to $size
+    $size: map.get($breakpointValues, $key);
+    @media screen and (max-width: $size) {
+        @content;
+    }
+}
+
+@mixin tablet($key) {
+    // Get key value and assign to $size
+    $min: map.get($breakpointValues, $key);
+    $max: map.get($breakpointValues, $key);
+    @media screen and (min-width: #{$min + 1px}) and (max-width: #{$max}) {
+      @content;
+    }
+}
+
+@mixin bg-screen($key) {
+    // Get key value and assign to $size
+    
+    $size: map.get($breakpointValues, $key);
+    @media screen and (min-width: #{$size}) {
+        @content;
+    }
+}

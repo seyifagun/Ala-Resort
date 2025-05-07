@@ -1,0 +1,201 @@
+@import "./variables.scss";
+@import "./mediaQuery";
+@import "./reuseables";
+
+.footerContainer {
+    background-color: $secondary-color;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 48px;
+    padding-bottom: 64px;
+    position: relative;
+    border-radius: 32px 32px 0px 0px;
+    // margin-top: 64px;
+
+    @include tablet {
+        flex-direction: column;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    &__exploreArea, &__contactArea {
+        flex-basis: 25%;
+    }
+
+    &__logoArea, &__exploreArea, &__contactArea {
+        display: flex;
+        flex-direction: column;
+
+        h4 {
+            font-weight: $fontWeight-700;
+            color: $white;
+            font-size: $font-size-24;
+            margin-bottom: 24px;
+            @include tablet {
+                color: $primary-color;
+                margin-top: 32px;
+                margin-bottom: 16px;
+            }
+        }
+    }
+
+    &__logoArea {
+        flex-basis: 40%;
+        margin-right: auto;
+        gap: 48px;
+
+        .topArea {
+            .logo {
+                width: 88px;
+                height: 88px;
+                margin-bottom: 12px;
+            }
+            p {
+                color: $white;
+            }
+        }
+        .subscribeArea {
+            p {
+                color: $white;
+                margin-bottom: 12px;
+            }
+            &__subscriptionForm {
+                display: flex;
+                gap: 8px;
+                @include tablet {
+                    background: rgba(255, 255, 255, 0.69);
+                    gap: 0;
+                    border-radius: 32px;
+                    width: 80%;
+                    overflow: hidden;
+                }
+
+                .inputField {
+                    display: flex;
+                    flex-direction: column;
+                    .errorMsg {
+                        font-size: 12px;
+                    }
+                }
+
+                input {
+                    @include input;
+                    @include tablet {
+                        width: 100%;
+                        background: transparent;
+                        &::placeholder {
+                            color: $secondary-color;
+                        }
+                    }
+                }
+                button {
+                    @include big-button;
+                    @include tablet {
+                        min-width: 64px;
+                        height: auto;
+                        display: grid;
+                        place-items: center;
+                        border-radius: 32px 0px 0px 0px;
+                        background-color: #005381;
+                        -webkit-tap-highlight-color: transparent;
+                        -ms-user-select: none;
+                        user-select: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &__exploreArea {
+        .navLinks {
+            a, li {
+                list-style: none;
+                padding: 0;
+                color: $white;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 20px;
+                cursor: pointer;
+                width: fit-content;
+                transition: all 300ms ease;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                &:hover {
+                    transform: translateX(4px);
+                    color: $primary-color;
+                }
+                svg {
+                    width: 12px;
+                    height: 12px;
+                }
+            }
+        }
+    }
+
+    &__contactArea {
+        gap: 4px;
+        
+        .contacts {
+            li, a {
+                list-style: none;
+                padding: 0;
+                color: $white;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-bottom: 20px;
+                cursor: pointer;
+                width: fit-content;
+                transition: all 300ms ease;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                &:first-child {
+                    &:hover {
+                        transform: translateX(0px);
+                    }
+                }
+                &:hover {
+                    transform: translateX(4px);
+                }
+                svg {
+                    display: flex;
+                    width: 32px;
+                }
+            }
+        }
+        .socials {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            align-items: center;
+            color: $white;
+            .icon {
+                display: inline-flex;
+                transition: all 300ms ease;
+                cursor: pointer;
+                
+                &:hover {
+                    transform: translateY(-4px);
+                }
+                svg {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+
+    .rights {
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        padding-bottom: 12px;
+        bottom: 0;
+        left: 0;
+        color: $grey-bg;
+        font-size: $font-size-16 - 4px;
+    }
+}

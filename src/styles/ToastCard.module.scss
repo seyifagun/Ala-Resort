@@ -1,0 +1,251 @@
+@import './variables.scss';
+
+.container {
+    position: fixed;
+    top: 20px;
+    translate: 0, 100px;
+    right: 20px;
+    z-index: 200; 
+    transition: all 300ms ease-in;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.toastCard {
+    padding: 12px;
+    display: flex;
+    align-items: flex-start; 
+    gap: 10px;
+    // border-radius: 0px 24px 24px 24px;
+    border-radius: 0px;
+    border-radius: 8px;
+    position: relative;
+
+    &__messageType {
+        display: flex;
+        gap: 16px;
+
+
+        .info {
+            width: 250px; 
+            h4 {
+                margin: 0; 
+            }
+            &__title {
+                font-weight: 700;
+                font-size: 16px;
+            }
+            p {
+                margin: 0;
+            }
+            &__description { 
+                font-size: 12px;
+            }
+        }
+    }
+
+    span {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        // background-color: $success;
+        animation: loader var(--loader-timer) infinite ease;
+        @keyframes loader {
+            from {
+                width: 100%;
+            }
+        }
+    }
+    .spansuccess {
+        background-color: $success;
+    }
+    .spaninfo {
+        background-color: $info;
+    }
+    .spanwarning {
+        background-color: $warning;
+    }
+    .spandanger {
+        background-color: $danger;
+    }
+}
+
+.toastCardMobile {
+    @extend .toastCard;
+    padding: 8px;
+    gap: 10px;
+    border-radius: 0px 12px 12px 12px;
+    &__messageType {
+        display: flex;
+        gap: 8px;
+
+
+        .info {
+            &__title {
+                font-size: 12px;
+            }
+            &__description { 
+                font-size: 10px;
+            }
+        }
+    }
+}
+
+.successCard {
+    background-color: $success-light;
+    border: 1px solid $success;
+    border-left: 8px solid $success;
+    .closeCard {
+        padding: 6px;  
+        // border-radius: 8px 16px 16px 8px;
+        cursor: pointer;
+        border: none;
+        // border: 1px solid #000;
+        border-radius: 6px;
+        background-color: transparent;
+
+        display: flex;
+        align-items: center;
+        svg {
+            path {
+                fill: $black;
+            }
+        }
+        &:hover {
+            background-color: $success-btn;
+        }
+    }
+}
+.infoCard {
+    background-color: $info-light;
+    border: 1px solid $info;
+    border-left: 8px solid $info;
+    @extend .successCard; 
+    .closeCard {
+        &:hover {
+            background-color: $info-btn;
+        }
+    }
+}
+.warningCard {
+    background-color: $warning-light;
+    border: 1px solid $warning;
+    border-left: 8px solid $warning;
+    @extend .successCard; 
+    .closeCard {
+        &:hover {
+            background-color: $warning-btn;
+        }
+    }
+}
+.dangerCard {
+    background-color: $danger-light;
+    border: 1px solid $danger;
+    border-left: 8px solid $danger;
+    @extend .successCard; 
+    .closeCard {
+        &:hover {
+            background-color: $danger-btn;
+        }
+    }
+}
+
+.indicatorsuccess {
+    // background-color: .success-box; 
+    // width: 50px;
+    // height: 50px;
+    // border-radius: 0px 16px 16px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+
+    &__box {
+        background-color: $white;
+        padding: 8px;
+        display: inline-flex;
+        border-radius: 50%; 
+        svg {
+            color: $success;
+            font-size: 16px; 
+        }
+    }
+}
+.indicatorinfo {
+    @extend .indicatorsuccess;
+
+    &__box {
+        
+    @extend .indicatorsuccess__box;
+
+        svg {
+            color: $info;
+        }
+    }
+}
+.indicatorwarning {
+    @extend .indicatorsuccess;
+
+    &__box {
+        
+    @extend .indicatorsuccess__box;
+
+        svg {
+            color: $warning;
+        }
+    }
+}
+.indicatordanger {
+    @extend .indicatorsuccess;
+
+    &__box {
+        
+    @extend .indicatorsuccess__box;
+
+        svg {
+            color: $danger;
+        }
+    }
+}
+
+.titlesuccess {
+    color: $success;
+}
+.titleinfo {
+    color: $info;
+}
+.titlewarning {
+    color: $warning;
+}
+.titledanger {
+    color: $danger;
+}
+
+.show {
+    display: flex !important;
+    animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.hide {
+    display: none !important;
+    animation: slideOut 0.3s ease;
+}
+@keyframes slideOut {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}

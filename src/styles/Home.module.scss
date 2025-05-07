@@ -1,0 +1,988 @@
+@import "./variables.scss";
+@import "./mediaQuery";
+@import "./reuseables";
+
+.homepage {
+	background-color: $white;
+}
+
+.container {
+	background-color: $grey-bg;
+	@include tablet {
+		background-color: #000;
+	}
+}
+
+.heroSection {
+	overflow: hidden;
+	// height: 100%;
+	width: 100%;
+	height: calc(85vh - 65.5px);
+	overflow: hidden;
+	display: flex;
+	z-index: 2;
+	padding-left: 8%;
+	background-color: $white;
+	@include tablet {
+		padding-left: 0;
+		padding: $padding-mobile-side;
+		overflow: visible;
+	}
+
+	&__image {
+		position: absolute;
+		width: 100vw;
+		height: 85vh;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		border-radius: 0px 0px 40px 40px;
+		overflow: hidden;
+		&::after {
+			// background: linear-gradient(118.03deg, rgba(5, 8, 37, 0.6) 84.55%, rgba(77, 79, 100, 0.492) 99.98%);
+			background: linear-gradient(138.73deg, rgba(5, 8, 37, 0.5) 62.58%, rgba(43, 43, 81, 0.6) 76.48%);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			content: "";
+			z-index: 1;
+		}
+		img {
+			object-fit: cover;
+			z-index: 1;
+		}
+	}
+	&__contents {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		@include tablet {
+			width: 100%;
+		}
+		.left {
+			z-index: 2;
+			width: 40%;
+			margin: auto 0px;
+			@include tablet {
+				width: 90%;
+				margin: 0;
+			}
+			.textArea {
+				z-index: 2;
+				margin-bottom: 32px;
+				@include tablet {
+					width: 100%;
+					margin: 0;
+					margin-bottom: 128px;
+				}
+
+				h2,
+				p,
+				&__button {
+					z-index: 3;
+					margin-bottom: 12px;
+				}
+				h2 {
+					font-size: 36px;
+					color: $white;
+					line-height: 36px;
+					white-space: nowrap;
+					@include tablet {
+						font-size: 52px;
+						line-height: 52px;
+						white-space: pre-wrap;
+					}
+					span {
+						color: $primary-color;
+					}
+				}
+				p {
+					color: $white;
+					font-size: 16px;
+					font-weight: 300;
+					@include tablet {
+						font-size: 18px;
+						font-weight: 400;
+					}
+				}
+				&__button {
+					margin: 0;
+					button {
+						@include big-button;
+						@include tablet {
+							font-size: 16px;
+							margin-top: 18px;
+						}
+					}
+				}
+			}
+			.scrollIcon {
+				width: fit-content;
+				color: $white;
+
+				.slideIcon {
+					cursor: pointer;
+					min-height: 40px;
+					display: inline-flex;
+
+					svg {
+						height: 30px;
+						animation: bounce 700ms ease infinite alternate;
+						@keyframes bounce {
+							0% {
+								transform: translateY(12px);
+								height: 25px;
+								opacity: 0.5;
+							}
+							100% {
+								transform: translateY(0px);
+								height: 30px;
+								opacity: 1;
+							}
+						}
+					}
+					// & > p {
+					// 	color: $white;
+					// }
+				}
+			}
+		}
+		.carouselArea {
+			width: 550px;
+			width: 55%;
+			// width: 100%;
+			margin-top: auto;
+			margin-left: auto;
+			margin-bottom: 48px;
+			// position: absolute;
+			// right: 0;
+			// transition: all 2200ms ease;
+			user-select: none;
+
+			.carousel {
+				display: flex;
+				gap: 12px;
+				overflow-x: auto;
+				margin-bottom: 12px;
+				transition: all 2200ms ease;
+				scroll-behavior: cubic-bezier(0.79, 0.14, 0.15, 0.86) !important;
+
+				&::-webkit-scrollbar {
+					display: none;
+				}
+
+				.eachCard {
+					height: 150px;
+					width: 130px;
+					min-width: 130px;
+					display: inline-flex;
+					border-radius: 12px;
+					overflow: hidden;
+					position: relative;
+					// cursor: pointer;
+					&::after {
+						position: absolute;
+						width: 100%;
+						height: 100%;
+						content: "";
+						background: linear-gradient(
+							180deg,
+							rgba(24, 24, 24, 0) 24.2%,
+							rgba(24, 24, 24, 0.036) 53.6%,
+							rgba(24, 24, 24, 0.9) 99.74%
+						);
+						transition: all 400ms ease;
+					}
+					// &:hover {
+					// 	&::after {
+					// 		background: transparent;
+					// 	}
+					// 	img {
+					// 		scale: 1.2;
+					// 	}
+					// 	p {
+					// 		scale: 0.5;
+					// 		opacity: 0;
+					// 		transform: translateY(20px);
+					// 	}
+					// }
+					img {
+						object-fit: cover;
+						transition: all 400ms ease;
+					}
+					p {
+						position: absolute;
+						color: $white;
+						bottom: 6%;
+						width: 100%;
+						text-align: center;
+						z-index: 2;
+						font-size: 14px - 2px;
+						transition: all 450ms ease;
+					}
+				}
+			}
+			.indicator {
+				display: flex;
+				gap: 8px;
+				span {
+					display: inline-flex;
+					cursor: pointer;
+					transition: all 300ms ease;
+					svg {
+						width: 20px;
+						height: 20px;
+						transition: all 300ms ease;
+					}
+					&:hover {
+						svg {
+							path {
+								fill: $primary-color;
+							}
+						}
+					}
+				}
+				.inactive {
+					// background-color: ;
+					opacity: 0.5;
+					&:hover {
+						svg {
+							path {
+								fill: #fdfdfd;
+							}
+						}
+					}
+				}
+			}
+		}
+		.mobileCarouselArea {
+			// border: 1px solid #000;
+			position: absolute;
+			bottom: -20%;
+			// display: flex;
+			width: 100%;
+			margin: 0 auto;
+			height: 230px;
+			overflow: hidden;
+			// transform: translateX(2%);
+			transform: translateX(0px);
+			// border: 1px solid #fff;
+			.carousel {
+				display: flex;
+				flex-wrap: nowrap;
+				gap: 32px;
+				height: 100%;
+				width: 100%;
+				// border: 2px solid #000;
+				overflow-x: auto;
+				&::-webkit-scrollbar {
+					display: none;
+				}
+
+				.eachCard {
+					// border: 4px solid #fff;
+					width: 200px;
+					min-width: 200px;
+					height: 100%;
+					border-radius: 24px;
+					overflow: hidden;
+					position: relative;
+					display: inline-flex;
+					&::after {
+						position: absolute;
+						width: 100%;
+						height: 100%;
+						content: "";
+						background: linear-gradient(
+							180deg,
+							rgba(24, 24, 24, 0) 24.2%,
+							rgba(24, 24, 24, 0.036) 53.6%,
+							rgba(24, 24, 24, 0.9) 99.74%
+						);
+						transition: all 400ms ease;
+					}
+					img {
+						object-fit: cover;
+						border-radius: 24px;
+					}
+					p {
+						position: absolute;
+						color: $white;
+						bottom: 6%;
+						width: 100%;
+						text-align: center;
+						z-index: 2;
+						font-size: 20px;
+						transition: all 450ms ease;
+					}
+				}
+			}
+		}
+	}
+}
+
+.sustainanceSection {
+	background-color: $white;
+	padding-top: 96px;
+	padding-bottom: 96px;
+	color: $secondary-color;
+	// @include tablet {
+	// 	padding-top: 256px;
+	// }
+
+	.textArea {
+		margin: 0 auto;
+		width: 60%;
+		text-align: center;
+		@include tablet {
+			width: 100%;
+			text-align: left;
+		}
+		h4 {
+			font-size: 32px;
+			line-height: 32px;
+			margin: 8px 0;
+			@include tablet {
+				font-size: 40px;
+				line-height: 40px;
+			}
+		}
+	}
+
+	.carouselSection {
+		width: 100%;
+		margin-top: 96px;
+		position: relative;
+		.carousel {
+			display: flex;
+			justify-content: space-between;
+			position: relative;
+			width: 75%;
+			margin: 0 auto;
+			// border: 1px solid #000;
+			position: relative;
+			gap: 22%;
+
+			@include tablet {
+				justify-content: center;
+				gap: 16px;
+			}
+
+			.eachCard {
+				padding: 24px;
+				border-radius: 24px;
+				background-color: $dark-grey;
+				// height: fit-content;
+				max-height: 250px;
+				width: 100%;
+				// max-width: 30%;
+				transition: all 600ms ease;
+
+				@include tablet {
+					opacity: 0;
+					// scale: 0.2;
+					min-width: 100%;
+					height: 300px;
+					max-height: 300px;
+				}
+
+				// &:first-child {
+				// 	margin-right: auto;
+				// }
+
+				&__image {
+					height: 48px;
+					display: inline-flex;
+					margin: 0 auto;
+				}
+				h5 {
+					font-size: 18px;
+					margin-top: 8px;
+				}
+				p {
+					font-size: 13px;
+					max-height: 128px;
+					overflow: hidden;
+				}
+				button {
+					display: none;
+				}
+			}
+			.active {
+				background-color: $secondary-color;
+				color: $white;
+				position: absolute;
+				// width: 30%;
+				width: 250px;
+				// opacity: 0;
+				max-height: fit-content;
+				max-width: 250px;
+				left: 35%;
+				scale: 1.2;
+				transform: translateY(-24px);
+				animation: activeCard 2500ms ease infinite alternate;
+				z-index: 2;
+
+				@include tablet {
+					left: 0%;
+					scale: 1;
+					opacity: 1;
+					margin: auto;
+					left: 50%;
+					transform: translateY(0px);
+					// width: 250px;
+					// max-width: 250px;
+					margin-left: -50%;
+				}
+
+				@keyframes activeCard {
+					from {
+						transform: translateY(-10px);
+					}
+				}
+
+				.eachCard__image {
+					height: 80px;
+				}
+				p {
+					font-size: 12px;
+					margin: 12px 0;
+				}
+				button {
+					@include small-button;
+					background: transparent;
+					color: $primary-color;
+					padding: 0;
+					svg {
+						path {
+							fill: $primary-color;
+						}
+					}
+				}
+			}
+		}
+		.indicators {
+			// border: 1px solid #000;
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			margin: 0 auto;
+			position: absolute;
+			top: 40%;
+			margin: 0 auto;
+			@include tablet {
+				top: 55%;
+			}
+			span {
+				display: inline-flex;
+				cursor: pointer;
+				&:hover {
+					svg {
+						path {
+							fill: $secondary-color;
+						}
+					}
+				}
+				svg {
+					width: 24px;
+					height: 24px;
+					path {
+						fill: $primary-color;
+					}
+				}
+			}
+		}
+	}
+}
+
+.projectsSection {
+	@extend .sustainanceSection;
+	background-color: rgba($white, 0.8);
+
+	.projectCardsSection {
+		display: flex;
+		justify-content: center;
+		gap: 16px;
+		margin: 48px 0;
+		width: 100%;
+		@include tablet {
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			justify-content: flex-start;
+		}
+		.eachCards {
+			width: 250px;
+			height: 330px;
+			// border: 1px solid;
+			position: relative;
+			border-radius: 24px;
+			display: flex;
+			overflow: hidden;
+			cursor: pointer;
+			-webkit-tap-highlight-color: transparent;
+			-ms-user-select: none;
+			user-select: none;
+			@include tablet {
+				min-width: 250px;
+			}
+
+			img {
+				transition: all 300ms ease;
+				// border: 1px solid;
+				object-fit: cover;
+			}
+
+			&:hover {
+				&::after {
+					transform: translateY(50px);
+				}
+				img {
+					scale: 1.2;
+				}
+				span {
+					color: $primary-color;
+					gap: 12px;
+					font-weight: $fontWeight-600;
+					svg {
+						path {
+							fill: $primary-color;
+						}
+					}
+				}
+			}
+
+			&::after {
+				content: "";
+				background: linear-gradient(180.64deg, rgba(18, 22, 23, 0) 45.42%, rgba(1, 56, 77, 0.98) 90%);
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				position: absolute;
+				z-index: 1;
+				transition: all 300ms ease;
+			}
+
+			span {
+				position: absolute;
+				display: flex;
+				align-items: center;
+				padding: 24px;
+				width: 100%;
+				height: fit-content;
+				margin-top: auto;
+				bottom: 0;
+				z-index: 2;
+				color: $white;
+				gap: 8px;
+				transition: all 300ms ease;
+				p {
+					color: $white;
+					z-index: 2;
+					transition: all 300ms ease;
+				}
+				svg {
+					width: 14px;
+					height: 14px;
+				}
+			}
+		}
+	}
+
+	.button {
+		button {
+			@include big-button;
+			margin: 0 auto;
+		}
+	}
+}
+
+.scheduleSection {
+	height: 140px;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+
+	.backgroundImage {
+		z-index: 1;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		img {
+			object-fit: cover;
+			z-index: 1;
+			position: relative;
+		}
+	}
+	.textContents {
+		z-index: 2;
+		position: relative;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		h3,
+		button {
+			z-index: 2;
+		}
+		h3 {
+			font-size: $font-size-30;
+			color: $white;
+			font-weight: $fontWeight-400;
+			span {
+				font-weight: $fontWeight-700;
+			}
+			@include tablet {
+				font-size: $font-size-24;
+				max-width: 60%;
+			}
+		}
+		button {
+			@include big-button;
+		}
+	}
+}
+
+.blogSection {
+	@extend .sustainanceSection;
+
+	.cardsSection {
+		margin: 32px auto;
+		display: grid;
+		width: 80%;
+		justify-content: space-between;
+		justify-items: center;
+		grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+		gap: 24px;
+		@include tablet {
+			margin: 48px auto;
+			width: 100%;
+			display: flex;
+			flex-wrap: nowrap;
+			overflow-x: auto;
+		}
+
+		.eachCard {
+			border-radius: 24px;
+			overflow: hidden;
+			box-shadow: 0px 8px 8px rgba(43, 46, 74, 0.08);
+			color: $secondary-color;
+			@include tablet {
+				min-width: 100%;
+			}
+			@include bigMobilePhone {
+				width: 100%;
+			}
+
+			.imageArea {
+				position: relative;
+				height: 200px;
+				display: flex;
+
+				&::after {
+					content: "";
+					width: 100%;
+					height: 100%;
+					background: rgba(1, 56, 77, 0.45);
+					position: absolute;
+					top: 0;
+					left: 0;
+					z-index: 1;
+				}
+
+				img {
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					top: 0;
+					left: 0;
+					z-index: 1;
+				}
+				p {
+					z-index: 2;
+					position: relative;
+					color: #fff;
+					// display: flex;
+					margin-top: auto;
+					margin-bottom: 10px;
+					margin-left: 12px;
+				}
+			}
+
+			.textContents {
+				padding: 16px;
+				background-color: $white;
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+
+				h5 {
+					font-size: $font-size-20;
+					font-weight: 600;
+					line-height: 20px;
+				}
+
+				button {
+					@include small-button;
+					padding: 0;
+					color: $primary-color;
+					background: transparent;
+					svg {
+						path {
+							fill: $primary-color;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.actionBtn {
+		button {
+			@include big-button;
+			margin: 0 auto;
+		}
+	}
+}
+
+.organizationsSection {
+	background-color: $white;
+	padding-top: 24px;
+	padding-bottom: 24px;
+	@include tablet {
+		padding: 0;
+		height: 80px;
+		overflow-x: auto;
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	&__logos {
+		display: flex;
+		align-items: center;
+		background-color: $white;
+		box-shadow: 0px 8px 8px rgba(43, 46, 74, 0.08);
+		border-radius: 24px;
+		justify-content: space-around;
+		justify-content: center;
+		padding: 8px 32px;
+		// width: fit-content;
+		// width: 100%;
+		margin: 0 auto;
+		gap: 86px;
+
+		// border: 1px solid #000;
+		@include tablet {
+			height: 100%;
+			width: 100%;
+			border-radius: 0;
+			gap: 32px;
+			flex-wrap: nowrap;
+			transform: translateX(50%);
+			animation: slideLogos 5000ms linear 200ms alternate infinite;
+
+			@keyframes slideLogos {
+				to {
+					transform: translateX(-50%);
+				}
+			}
+		}
+
+		.eachLogo {
+			@include tablet {
+				min-width: 200px;
+			}
+		}
+	}
+}
+
+.tourSection {
+	@extend .sustainanceSection;
+	display: flex;
+	align-items: center;
+	// justify-content: flex-start;
+	gap: 12px;
+	overflow: hidden;
+	padding-bottom: 48px;
+
+	@include tablet {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.textArea {
+		text-align: left;
+		min-width: 45%;
+		max-width: 45%;
+		margin: 0;
+		margin-right: auto;
+		@include tablet {
+			min-width: 100%;
+			max-width: 100%;
+			margin-bottom: 32px;
+		}
+		h3 {
+			font-size: $font-size-35;
+			margin-bottom: 16px;
+			line-height: 35px;
+		}
+	}
+
+	.mediaArea {
+		width: 400px;
+		height: 400px;
+		display: grid;
+		place-items: center;
+		position: relative;
+		// border: 2px solid #000;
+
+		&::after {
+			animation: rotateAnim1 6000ms linear infinite;
+			user-select: none;
+			pointer-events: none;
+		}
+		&::before {
+			animation: rotateAnim2 6400ms linear infinite;
+			user-select: none;
+			pointer-events: none;
+		}
+
+		@keyframes rotateAnim1 {
+			from {
+				rotate: 0deg;
+			}
+			to {
+				rotate: 360deg;
+			}
+		}
+
+		@keyframes rotateAnim2 {
+			from {
+				rotate: 360deg;
+			}
+			to {
+				rotate: 0deg;
+			}
+		}
+
+		&::after {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0%;
+			left: 0;
+			rotate: -20deg;
+			content: "";
+			background-clip: padding-box;
+			background: rgba(35, 179, 231, 0.3);
+			clip-path: path(
+				"M83.3022 321.914C-7.61773 320.509 -21.7321 234.793 30.0893 137.745C87.4526 30.3188 140.251 -29.5429 222.67 15.1924C473.902 151.555 376.926 264.148 273.192 300.314C204.764 324.17 121.351 322.502 83.3022 321.914Z"
+			);
+			z-index: 1;
+		}
+		&::before {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0%;
+			left: 0;
+			rotate: 180deg;
+			content: "";
+			background-clip: padding-box;
+			background: rgba(207, 235, 245, 0.6);
+			clip-path: path(
+				"M83.3022 321.914C-7.61773 320.509 -21.7321 234.793 30.0893 137.745C87.4526 30.3188 140.251 -29.5429 222.67 15.1924C473.902 151.555 376.926 264.148 273.192 300.314C204.764 324.17 121.351 322.502 83.3022 321.914Z"
+			);
+			z-index: 1;
+		}
+
+		&__videoElement {
+			width: 90%;
+			height: 90%;
+			// border: 2px solid #000;
+			display: flex;
+			place-items: center;
+			position: relative;
+			// clip-path: path("M64.9804 248.512C-5.11866 247.429 -16.0008 181.342 23.9534 106.518C68.1803 23.6928 108.888 -22.4604 172.433 12.0304C366.132 117.166 291.364 203.974 211.385 231.858C158.627 250.252 94.316 248.965 64.9804 248.512Z");
+			clip-path: path(
+				"M83.3022 321.914C-7.61773 320.509 -21.7321 234.793 30.0893 137.745C87.4526 30.3188 140.251 -29.5429 222.67 15.1924C473.902 151.555 376.926 264.148 273.192 300.314C204.764 324.17 121.351 322.502 83.3022 321.914Z"
+			);
+			z-index: 2;
+
+			&::after {
+				content: "";
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				scale: 1.5;
+				top: 0;
+				left: 0;
+				background: rgba(0, 0, 0, 0.3);
+			}
+
+			// &:hover {
+			// 	img {
+			// 		filter: none;
+			// 		scale: 1.4;
+			// 	}
+			// }
+			video,
+			iframe {
+				width: 100%;
+				height: 100%;
+				z-index: 3;
+			}
+
+			img,
+			video,
+			iframe {
+				object-fit: cover;
+				scale: 1.2;
+				// transform: translateY(25px);
+				// filter: grayscale(100);
+				transition: all 300ms ease;
+			}
+			iframe {
+				scale: 1.65;
+				transform: translateY(-10px);
+				pointer-events: none;
+			}
+
+			.videoController {
+				position: absolute;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				z-index: 3;
+				cursor: pointer;
+				left: 50%;
+				transform: translate(-50%, 0);
+
+				span {
+					width: 44px;
+					height: 44px;
+					background-color: $white;
+					display: grid;
+					place-items: center;
+					border-radius: 100%;
+				}
+
+				svg {
+					width: 28px;
+					height: 28px;
+				}
+				p {
+					color: $white;
+				}
+			}
+		}
+	}
+}

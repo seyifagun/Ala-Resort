@@ -1,0 +1,116 @@
+@import "./variables.scss";
+@import "./mediaQuery";
+@import "./reuseables";
+
+.contactPage {
+    background-color: #F6F6F6 !important;
+    padding-bottom: 64px;
+
+    .heroSection {
+        @include heroSection;
+    }
+    .contactSubSection {
+        padding-top: 64px;
+        color: $secondary-color;
+        padding-bottom: 48px;
+        @include tablet {
+            padding-top: 128px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: $font-size-40 + 4px;
+            margin-bottom: 48px;
+        }
+
+        .contactCards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            padding-bottom: 80px;
+            @include tablet {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .eachCard {
+                background-color: $white !important;
+                box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.05);
+                border-radius: 24px 0px;
+                width: 100%;
+                min-height: 200px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 24px;
+                padding: 24px;
+                @include tablet {
+                    width: 70%;
+                }
+                @include bigMobilePhone {
+                    width: 100%;
+                }
+                &__top {
+                    svg {
+                        height: 32px;
+                        path {
+                            fill: $secondary-color;
+                        }
+                    }
+                    p {
+                        font-weight: $fontWeight-700;
+                    }
+                }
+            }
+        }
+
+        .messageArea {
+            border-radius: 48px 0px;
+            padding: 48px;
+            background-color: $white;
+
+            form {
+                // border: 1px solid #000;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                .inputArea {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                    label {
+                        font-weight: $fontWeight-600;
+                        span {
+                            color: #ed1000;
+                        }
+                    }
+                    input, textarea {
+                        padding: 10px;
+                        border-radius: 4px;
+                        outline: none;
+                        border: 0.5px solid $secondary-color;
+                        color: $secondary-color;
+                        &:focus {
+                            border: 0.5px solid $primary-color;
+                        }
+                        &::placeholder {
+                            color: $grey-bg;
+                        }
+                    }
+                    textarea {
+                        min-height: 140px;
+                    }
+                }
+            }
+            button {
+                @include big-button;
+                margin: 0 auto;
+                @include tablet {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

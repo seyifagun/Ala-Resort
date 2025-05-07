@@ -1,0 +1,101 @@
+@import "./variables.scss";
+@import "./mediaQuery";
+@import "./reuseables";
+
+.scheduleTourPageBody {
+    background-color: $white;
+    padding-bottom: 64px;
+
+    .heroSection {
+        @include heroSection;
+        span {
+            color: $primary-color;
+        }
+    }
+
+    &__SubSection {
+        padding-top: 64px;
+        color: $secondary-color;
+        padding-bottom: 48px;
+        @include tablet {
+            padding-top: 128px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: $font-size-40 + 4px;
+            // margin-bottom: 48px;
+        }
+        p {
+            text-align: center;
+        }
+    }
+
+    .inputContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        @include tablet {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        
+        .inputArea {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            label {
+                font-weight: $fontWeight-600;
+                span {
+                    color: #EB485B;
+                }
+            }
+            input, textarea, select {
+                padding: 10px;
+                border-radius: 4px;
+                outline: none;
+                border: 0.5px solid $secondary-color;
+                color: $secondary-color;
+                &:focus {
+                    border: 0.5px solid $primary-color;
+                }
+                &::placeholder {
+                    color: $grey-bg;
+                }
+            }
+            button {
+                padding: 1px;
+                // border: 1px solid #000;
+                // width: 24px;
+                height: 24px;
+                display: grid;
+                place-items: center;
+                &:hover {
+                    background-color: $secondary-color;
+                }
+                span {
+                    width: 12px;
+                    height: 12px;
+                    display: inline-flex;
+                    &::before {
+                        // border: 1px solid #000;
+                        left: 0px;
+                        top: 0px;
+                        // width: 4px;
+                        // width: 4px;
+                        scale: 0.5;
+                        border-color: $white;
+                        // transform: rotate(65deg);
+                    }
+                    &::after {
+
+                    }
+                }
+            }
+        }
+    }
+    button {
+        @include big-button;
+        margin: 0 auto;
+        margin-top: 48px;
+    }
+}

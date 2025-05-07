@@ -1,0 +1,269 @@
+@import "./variables.scss";
+@import "./mediaQuery";
+@import "./reuseables";
+
+.aboutPage {
+    padding-bottom: 64px;
+    .heroSection {
+        @include heroSection;
+    }
+
+    .bodyContent,
+    .teamArea {
+        background-color: $white;
+        // padding-top: 64px;
+        color: $secondary-color;
+        // padding-bottom: 48px;
+
+        h2 {
+            text-align: center;
+            font-size: $font-size-40 + 4px;
+            margin-bottom: 8px;
+            margin-top: 64px;
+            @include tablet {
+                margin-top: 128px;
+            }
+        }
+
+        .info,
+        .visionInfo {
+            display: flex;
+            align-items: center;
+            // padding: 24px 0;
+            padding-top: 24px;
+            padding-bottom: 24px;
+
+            @include tablet {
+                flex-direction: column-reverse;
+            }
+
+            &:nth-of-type(2) {
+                flex-direction: row-reverse;
+                padding-bottom: 48px;
+                .mediaArea {
+                    margin-right: auto !important;
+                }
+                @include tablet {
+                    flex-direction: column-reverse;
+                    padding-top: 64px;
+                    padding-bottom: 64px;
+                }
+            }
+
+            &__textArea {
+                width: 55%;
+                @include tablet {
+                    width: 100%;
+                    text-align: center;
+                }
+                h4 {
+                    margin-bottom: 10px;
+                    position: relative;
+                    width: fit-content;
+                    &::after {
+                        position: absolute;
+                        height: 2px;
+                        width: 35%;
+                        border-radius: 4px;
+                        background-color: $secondary-color;
+                        bottom: -2px;
+                        left: 0;
+                        content: "";
+                    }
+                }
+                p {
+                    line-height: 28px;
+                    @include tablet {
+                        font-weight: 400;
+                        font-size: $font-size-20;
+                        line-height: 32px;
+                    }
+                }
+            }
+            &__mediaArea {
+                width: 45%;
+                @include tablet {
+                    width: 90%;
+                }
+            }
+
+            .mediaArea {
+                width: 400px;
+                height: 400px;
+                display: grid;
+                place-items: center;
+                position: relative;
+                @include tablet {
+                    margin: 0 auto;
+                    transform: translateX(-10px);
+                }
+
+                &::after {
+                    animation: rotateAnim1 6000ms linear infinite;
+                }
+                &::before {
+                    animation: rotateAnim2 6400ms linear infinite;
+                }
+
+                @keyframes rotateAnim1 {
+                    from {
+                        rotate: 0deg;
+                    }
+                    to {
+                        rotate: 360deg;
+                    }
+                }
+
+                @keyframes rotateAnim2 {
+                    from {
+                        rotate: 360deg;
+                    }
+                    to {
+                        rotate: 0deg;
+                    }
+                }
+
+                &::after {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0%;
+                    left: 0;
+                    rotate: -20deg;
+                    content: "";
+                    background-clip: padding-box;
+                    background: rgba(35, 179, 231, 0.3);
+                    clip-path: path(
+                        "M83.3022 321.914C-7.61773 320.509 -21.7321 234.793 30.0893 137.745C87.4526 30.3188 140.251 -29.5429 222.67 15.1924C473.902 151.555 376.926 264.148 273.192 300.314C204.764 324.17 121.351 322.502 83.3022 321.914Z"
+                    );
+                    z-index: 1;
+                }
+                &::before {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0%;
+                    left: 0;
+                    rotate: 180deg;
+                    content: "";
+                    background-clip: padding-box;
+                    background: rgba(207, 235, 245, 0.6);
+                    clip-path: path(
+                        "M83.3022 321.914C-7.61773 320.509 -21.7321 234.793 30.0893 137.745C87.4526 30.3188 140.251 -29.5429 222.67 15.1924C473.902 151.555 376.926 264.148 273.192 300.314C204.764 324.17 121.351 322.502 83.3022 321.914Z"
+                    );
+                    z-index: 1;
+                }
+
+                &__videoElement {
+                    width: 90%;
+                    height: 90%;
+                    // border: 2px solid #000;
+                    display: flex;
+                    place-items: center;
+                    position: relative;
+                    // clip-path: path("M64.9804 248.512C-5.11866 247.429 -16.0008 181.342 23.9534 106.518C68.1803 23.6928 108.888 -22.4604 172.433 12.0304C366.132 117.166 291.364 203.974 211.385 231.858C158.627 250.252 94.316 248.965 64.9804 248.512Z");
+                    clip-path: path(
+                        "M83.3022 321.914C-7.61773 320.509 -21.7321 234.793 30.0893 137.745C87.4526 30.3188 140.251 -29.5429 222.67 15.1924C473.902 151.555 376.926 264.148 273.192 300.314C204.764 324.17 121.351 322.502 83.3022 321.914Z"
+                    );
+                    z-index: 2;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        scale: 1.5;
+                        top: 0;
+                        left: 0;
+                        background: rgba(0, 0, 0, 0.3);
+                    }
+
+                    // &:hover {
+                    // 	img {
+                    // 		filter: none;
+                    // 		scale: 1.4;
+                    // 	}
+                    // }
+                    video {
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    img,
+                    video {
+                        object-fit: cover;
+                        scale: 1.2;
+                        // transform: translateY(25px);
+                        // filter: grayscale(100);
+                        transition: all 300ms ease;
+                    }
+
+                    .videoController {
+                        position: absolute;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 2;
+                        cursor: pointer;
+                        left: 50%;
+                        transform: translate(-50%, 0);
+
+                        svg {
+                            width: 40px;
+                            height: 40px;
+                        }
+                        p {
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }
+
+        .visionInfo {
+            background: rgba(1, 56, 77, 0.09);
+            padding-top: 48px;
+            padding-bottom: 48px;
+            .mediaArea {
+                margin-left: auto;
+            }
+            p {
+                @include tablet {
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .teamArea {
+        &__cards {
+            display: grid;
+            // justify-content: space-between;
+            // justify-items: center;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+            margin: 64px 0px;
+
+            .cards {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .image {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 100%;
+                    overflow: hidden;
+                    img {
+                        object-fit: cover;
+                    }
+                }
+                p {
+                    font-size: 12px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

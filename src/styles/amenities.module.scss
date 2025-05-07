@@ -1,0 +1,71 @@
+@import "./variables.scss";
+@import "./mediaQuery";
+@import "./reuseables";
+
+.amenitiesPageBody {
+    padding-bottom: 64px;
+    
+    .heroSection {
+        @include heroSection;
+    }
+
+    .amenitiesSubSection {        
+        // background-color: $white;
+        color: $secondary-color;
+        padding-bottom: 48px;
+        @include tablet {
+            padding-top: 128px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: $font-size-40 + 4px;
+            margin-bottom: 48px;
+            margin-top: 64px;
+            @include tablet {
+                width: 80%;
+                margin: 0 auto;
+            }    
+        }
+    }
+
+    .cardsArea {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(2, 50%);
+        justify-content: center;
+        margin-bottom: 48px;
+        @include tablet {
+            grid-template-columns: repeat(1, 100%);
+        }
+
+        .eachCard {
+            background: rgba(35, 179, 231, 0.12);
+            color: $secondary-color;
+            border-radius: 32px 0px;
+            padding: 64px 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .image {
+                width: 80px;
+                height: 80px;
+                background: rgba(35, 179, 231, 0.5);
+                padding: 16px;
+                border-radius: 8px;
+
+                img {
+                    object-fit: contain;
+                }
+            }
+            h4 {
+                font-size: 20px;
+            }
+            p {
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+}
